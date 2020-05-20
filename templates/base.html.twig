@@ -19,14 +19,15 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link active" href="/">Home</a>
                     <a class="nav-item nav-link" href="/Rooms">Rooms</a>
+                    <a class="nav-item nav-link" href="{{ path('app_logout') }}">{{ app.user.username }} Logout</a>
                 </div>
-{#            {% elseif app.admin %}#}
-{#                <div class="navbar-nav ml-auto">#}
-{#                    <a class="nav-item nav-link" href="/">Home</a>#}
-{#                    <a class="nav-item nav-link" href="/">Home</a>#}
-{#                    <a class="nav-item nav-link" href="/Booking">Booking</a>#}
-{#                    <a class="nav-item nav-link" href="/Admin">Admin</a>#}
-{#                </div>#}
+            {% elseif is_granted('ROLE_ADMIN')  %}
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link" href="/">Home</a>
+                    <a class="nav-item nav-link" href="/room">Home</a>
+                    <a class="nav-item nav-link" href="/Booking">Booking</a>
+                    <a class="nav-item nav-link" href="/Admin">Admin</a>
+                </div>
               {% else %}
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="/login">Login</a>
