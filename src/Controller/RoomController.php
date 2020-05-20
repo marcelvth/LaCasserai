@@ -20,7 +20,7 @@ class RoomController extends AbstractController
      */
     public function index(RoomRepository $roomRepository): Response
     {
-        return $this->render('room/index.rooms.html.twig', [
+        return $this->render('room/index.html.twig', [
             'rooms' => $roomRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class RoomController extends AbstractController
             return $this->redirectToRoute('room_index');
         }
 
-        return $this->render('room/new.rooms.html.twig', [
+        return $this->render('room/new.html.twig', [
             'room' => $room,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class RoomController extends AbstractController
      */
     public function show(Room $room): Response
     {
-        return $this->render('room/show.rooms.html.twig', [
+        return $this->render('room/show.html.twig', [
             'room' => $room,
         ]);
     }
@@ -72,7 +72,7 @@ class RoomController extends AbstractController
             return $this->redirectToRoute('room_index');
         }
 
-        return $this->render('room/edit.rooms.html.twig', [
+        return $this->render('room/edit.html.twig', [
             'room' => $room,
             'form' => $form->createView(),
         ]);

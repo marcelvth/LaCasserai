@@ -1,4 +1,4 @@
-{% extends 'base.rooms.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Room{% endblock %}
 
@@ -58,5 +58,5 @@
 
     <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
 
-    {{ include('room/_delete_form.rooms.html.twig') }}
+    {{ include('room/_delete_form.html.twig') }}
 {% endblock %}
