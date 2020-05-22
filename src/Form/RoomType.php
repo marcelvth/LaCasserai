@@ -6,6 +6,7 @@ use App\Entity\Room;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RoomType extends AbstractType
 {
@@ -18,11 +19,21 @@ class RoomType extends AbstractType
             ->add('Description')
             ->add('available')
             ->add('Name')
-            ->add('Image_name')
-            ->add('Image_size')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('Soort')
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'label_format' => "Image",
+                'label' => "Image",
+                'download_link' => true,
+                'allow_delete' => true,
+                'asset_helper' => true,
+                'empty_data' => $builder->getForm()->getData('room')->getImageName(),
+                //  'download_uri' => '...',
+                'download_label' => 'download_file',
+                'attr' => [
+                    'height' => 150,
+                ],
+            ])
         ;
     }
 

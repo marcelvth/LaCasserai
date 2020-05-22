@@ -30,6 +30,7 @@ class User extends EntityBase implements UserInterface
 
     /**
      * @ORM\Column(type="json")
+     *
      */
     private $roles = [];
 
@@ -102,6 +103,7 @@ class User extends EntityBase implements UserInterface
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->roles = new ArrayCollection();
     }
 
     public function getId(): ?int

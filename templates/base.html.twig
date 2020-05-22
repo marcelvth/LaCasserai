@@ -5,45 +5,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{% endblock %} - La Casserai</title>
         {{ encore_entry_link_tags('app') }}
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">La Casserai</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">La Casserai</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                {% if app.user %}
+                    <div class="navbar-nav ml-auto">
+                        <a class="nav-item nav-link active" href="/">Home</a>
+                        <a class="nav-item nav-link" href="/rooms">Rooms</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="nav-item nav-link" href="/booking">Booking</a>
+                            <a class="nav-item nav-link" href="/users">users</a>
+                            <a class="nav-item nav-link" href="/admin">Admin</a>
+                        {% endif %}
+                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">{{ app.user.firstName }} Logout</a>
+                    </div>
+                  {% else %}
+                    <div class="navbar-nav ml-auto">
+                        <a class="nav-item nav-link" href="/login">Login</a>
+                        <a class="nav-item nav-link" href="/register">Register</a>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
 
-            {% if app.user %}
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link active" href="/">Home</a>
-                    <a class="nav-item nav-link" href="/Rooms">Rooms</a>
-                    <a class="nav-item nav-link" href="{{ path('app_logout') }}">{{ app.user.username }} Logout</a>
-                </div>
-            {% elseif is_granted('ROLE_ADMIN')  %}
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="/">Home</a>
-                    <a class="nav-item nav-link" href="/room">Home</a>
-                    <a class="nav-item nav-link" href="/Booking">Booking</a>
-                    <a class="nav-item nav-link" href="/Admin">Admin</a>
-                </div>
-              {% else %}
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="/login">Login</a>
-                    <a class="nav-item nav-link" href="/register">Register</a>
-                </div>
-            {% endif %}
+        <div class="content">
+            {% block body %}
+
+            {% endblock %}
         </div>
-    </nav>
-    <div class="content">
-        {% block body %}
 
-        {% endblock %}
-    </div>
+        {% block javascripts %} {% endblock %}
 
-        {% block javascripts %}{% endblock %}
         {{ encore_entry_script_tags('app') }}
-
     </body>
 </html>

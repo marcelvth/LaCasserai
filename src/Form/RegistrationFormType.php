@@ -27,9 +27,6 @@ class RegistrationFormType extends AbstractType
             ->add('zip')
             ->add('city')
             ->add('country')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('country')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

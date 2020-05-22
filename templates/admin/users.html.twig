@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+       <div class="row">
+           <div class="col-12">
+               <table class="table">
+                   <tr>
+
+                           <td>Gebruikersnaam</td>
+{#                           <td>Role</td>#}
+                           <td>Email</td>
+                           <td>Mobiel nummer</td>
+                           <td>Voornaam</td>
+                           <td>Tussen naam</td>
+                           <td>Achternaam</td>
+                           <td>Adress</td>
+                           <td>Post code</td>
+                           <td>Stad</td>
+                           <td>Land</td>
+
+                   </tr>
+
+                   {% for user in users %}
+                       <tr>
+                           <td>{{ user.username|e }}</td>
+{#                           <td>{{ user.roles }}</td>#}
+                           <td>{{ user.email }}</td>
+                           <td>{{ user.mobileNr }}</td>
+                           <td>{{ user.firstName }}</td>
+                           <td>{{ user.insertionName }}</td>
+                           <td>{{ user.lastName }}</td>
+                           <td>{{ user.adress }}</td>
+                           <td>{{ user.zip }}</td>
+                           <td>{{ user.city }}</td>
+                           <td>{{ user.country }}</td>
+                       </tr>
+                   {% endfor %}
+               </table>
+
+           </div>
+       </div>
+    </div>
+{% endblock %}

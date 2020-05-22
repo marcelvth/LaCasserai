@@ -22,6 +22,17 @@ class HomeController extends AbstractController
         ]);
     }
     /**
+     * @Route("/rooms", name="rooms")
+     */
+    public function rooms()
+    {
+        $room= $this->getDoctrine()->getRepository(Room::class)->findAll();
+        return $this->render('home/rooms.html.twig', [
+            'controller_name' => 'HomeController',
+            'room' => $room,
+        ]);
+    }
+    /**
      * @Route("/viewroom/{id}")
      */
     public function viewroom($id){

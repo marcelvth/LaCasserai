@@ -15,10 +15,9 @@
                 <th>Description</th>
                 <th>Available</th>
                 <th>Name</th>
-                <th>Image_name</th>
-                <th>Image_size</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
+                <th>ImageName</th>
+                <th>ImageSize</th>
+                <th>image</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -32,10 +31,11 @@
                 <td>{{ room.Description }}</td>
                 <td>{{ room.available ? 'Yes' : 'No' }}</td>
                 <td>{{ room.Name }}</td>
-                <td>{{ room.ImageName }}</td>
-                <td>{{ room.ImageSize }}</td>
-                <td>{{ room.createdAt ? room.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ room.updatedAt ? room.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ room.imageName }}</td>
+                <td>{{ room.imageSize }}</td>
+                <td class="d-none d-md-block"><img src="{{ vich_uploader_asset(room, 'imageFile') }}" alt="{{ room.imageName }}"
+                                                   style="height:50px;"/></td>
+{#                <td>{{ room.updatedAt ? room.updatedAt|date('Y-m-d H:i:s') : '' }}</td>#}
                 <td>
                     <a href="{{ path('room_show', {'id': room.id}) }}">show</a>
                     <a href="{{ path('room_edit', {'id': room.id}) }}">edit</a>
@@ -43,7 +43,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="12">no records found</td>
+                <td colspan="11">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
